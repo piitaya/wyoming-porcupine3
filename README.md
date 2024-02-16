@@ -1,18 +1,33 @@
-# Wyoming Porcupine1
+# Wyoming Porcupine3
 
-[Wyoming protocol](https://github.com/rhasspy/wyoming) server for the [porcupine1](https://github.com/Picovoice/porcupine) wake word detection system.
+[Wyoming protocol](https://github.com/rhasspy/wyoming) server for the [porcupine3](https://github.com/Picovoice/porcupine) wake word detection system.
 
+You need a Picovoice access key to run Porcupine 3. you can create a free account on the (Picovoice website)[https://picovoice.ai/]
 
-## Home Assistant Add-on
+# Local Install
 
-[![Show add-on](https://my.home-assistant.io/badges/supervisor_addon.svg)](https://my.home-assistant.io/redirect/supervisor_addon/?addon=47701997_porcupine1&repository_url=https%3A%2F%2Fgithub.com%2Frhasspy%2Fhassio-addons)
+Clone the repository and set up Python virtual environment:
 
-[Source](https://github.com/rhasspy/hassio-addons/tree/master/porcupine1)
+```bash
+git clone https://github.com/piitaya/wyoming-porcupine3.git
+cd wyoming-porcupine3
+script/setup
+```
+
+Run a server that anyone can connect to:
+
+```bash
+script/run --uri 'tcp://0.0.0.0:10400' --access-key='PICOVOICE_ACCESS_KEY'
+```
+
+## Custom Models
+
+You can train up to 3 wake words per month for free using the [picovoice console](https://console.picovoice.ai/ppn). Create a folder (e.g. `custom_wake_words`), put your wake word files (`.ppn`) inside the folder and run the following command.
+
+```bash
+script/run --uri 'tcp://0.0.0.0:10400' --access-key='PICOVOICE_ACCESS_KEY' --custom-wake-words-dir='custom_wake_words'
+```
 
 ## Docker Image
 
-``` sh
-docker run -it -p 10400:10400 rhasspy/wyoming-porcupine1
-```
-
-[Source](https://github.com/rhasspy/wyoming-addons/tree/master/porcupine1)
+Docker is not supported for now because of access key limitation (more info here: https://github.com/Picovoice/picovoice/issues/552).
