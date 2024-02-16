@@ -151,8 +151,7 @@ async def main() -> None:
             kw_lang = custom_kw_path.stem.rsplit("_")[1]
             kw_name = custom_kw_path.stem.rsplit("_")[0]
             keywords[kw_name] = Keyword(language=kw_lang, name=kw_name, model_path=custom_kw_path)
-            _LOGGER.info(kw_lang)
-            _LOGGER.info(kw_name)
+            _LOGGER.info("Custom wake word found: %s (%s) ", kw_name, kw_lang)
 
     wyoming_info = Info(
         wake=[
